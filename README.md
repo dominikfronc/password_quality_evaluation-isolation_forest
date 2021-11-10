@@ -25,7 +25,7 @@ Dataset downloaded from [here](https://crackstation.net/crackstation-wordlist-pa
 Datasets downloaded from [here](https://wiki.skullsecurity.org/index.php/Passwords).
 
 ### Dataset scripts
-####only_acsi.py
+#### only_acsi.py
 Script for cleaning dataset. Removes any lines that contain non-ASCII codes or lines longer than 40 characters.
 To run:
 ```bash
@@ -33,7 +33,7 @@ python only_ascii.py input.txt > output.txt
 ```
 After that manual conversion to UTF-8 encoding is needed.
 
-####metrics.py
+#### metrics.py
 Script for transfering dataset of passwords into .csv file containing metrics representation of passwords.
 
 Metrics are following:
