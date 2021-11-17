@@ -1,37 +1,33 @@
 import sys
+import re
 
-lowercase = set(range(97, 122))
-uppercase = set(range(65, 90))
-digits = set(range(48, 57))
-symbols = set(range(32, 47)) | set(range(58, 64)) | set(range(91, 96)) | set(range(123, 126))
+
+def count_digits(p):
+    return sum(c.isdecimal() for c in p)
+
+
+def count_lower(p):
+    return sum(c.islower() for c in p)
+
+
+def count_upper(p):
+    return sum(c.isupper() for c in p)
+
+
+def split_group(p):
+    return re.findall('\d+|[A-Z]+|[a-z]+|[^A-Za-z\d]+', p)
 
 
 def convert_password(password):
-    vec = [0, 0, 0, 0, 0, 0]
-    vec[0] = len(password)-1
-    group = 0
-    for c in password:
-        if ord(c) in lowercase:
-            vec[1] += 1
-            if group != 1:
-                vec[5] += 1
-                group = 1
-        if ord(c) in uppercase:
-            vec[2] += 1
-            if group != 2:
-                vec[5] += 1
-                group = 2
-        if ord(c) in digits:
-            vec[3] += 1
-            if group != 3:
-                vec[5] += 1
-                group = 3
-        if ord(c) in symbols:
-            vec[4] += 1
-            if group != 4:
-                vec[5] += 1
-                group = 4
-    return vec
+    password = password.replace("\n", "")
+    v = [0, 0, 0, 0, 0, 0]
+    v[0] = len(password)
+    v[1] = count_lower(password)
+    v[2] = count_upper(password)
+    v[3] = count_digits(password)
+    v[4] = len(password) - v[1] - v[2] - v[3]
+    v[5] = len(split_group(password))
+    return v
 
 
 f = open(sys.argv[1], encoding="utf-8")
