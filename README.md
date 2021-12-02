@@ -32,19 +32,3 @@ To run:
 python only_ascii.py input.txt > output.txt
 ```
 After that manual conversion to UTF-8 encoding is needed.
-
-#### metrics.py
-Script for transfering dataset of passwords into .csv file containing metrics representation of passwords.
-
-Metrics are following:
-- password length
-- number of lowercase characters
-- number of uppercase characters
-- number of digits
-- number of special symbols
-- number of continuous groups of characters
-
-To run:
-```bash
-python metrics.py input.txt > output.csv
-```
